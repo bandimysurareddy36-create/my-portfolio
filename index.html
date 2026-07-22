@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bandi Mysura Reddy — Oracle Fusion Technical Consultant</title>
+<style>
+  :root{
+    --indigo:#5b4bf5;
+    --indigo-dark:#4338ca;
+    --purple:#7c3aed;
+    --ink:#1a1a2e;
+    --slate:#5a5a72;
+    --muted:#8a8aa3;
+    --line:#e7e6f2;
+    --bg:#ffffff;
+    --bg-soft:#f7f7fc;
+    --pink:#ec4899;
+    --green:#22c55e;
+    --orange:#f59e0b;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.5;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    display:flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;letter-spacing:.12em;
+    color:var(--indigo);text-transform:uppercase;margin-bottom:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--indigo);display:inline-block;}
+  h2{font-size:34px;margin:0 0 10px;letter-spacing:-0.02em;}
+  h2 span{color:var(--indigo);}
+  .section-desc{color:var(--slate);max-width:560px;font-size:15px;margin:0 0 40px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.85);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;max-width:1180px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand .logo{
+    width:38px;height:38px;border-radius:10px;
+    background:linear-gradient(135deg,var(--indigo),var(--purple));
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:14px;
+  }
+  .brand .names strong{display:block;font-size:15px;}
+  .brand .names small{color:var(--muted);font-size:11px;}
+  .navlinks{display:flex;gap:28px;font-size:14px;color:var(--slate);}
+  .navlinks a:hover{color:var(--indigo);}
+  .navlinks a.active{color:var(--indigo);font-weight:600;}
+  .navright{display:flex;align-items:center;gap:14px;}
+  .icon-btn{
+    width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;color:var(--slate);
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;border-radius:10px;font-size:14px;font-weight:600;
+    border:none;cursor:pointer;
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--indigo),var(--purple));color:#fff;}
+  .btn-outline{background:#fff;border:1px solid var(--line);color:var(--ink);}
+  @media (max-width:900px){.navlinks{display:none;}}
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(180deg,#f4f3fd 0%, #fafafe 60%, #fff 100%);
+    padding:70px 0 90px;
+  }
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:99px;
+    font-size:12px;font-weight:600;color:var(--slate);margin-bottom:22px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;}
+  .hero h1{font-size:52px;line-height:1.08;margin:0 0 18px;letter-spacing:-0.02em;}
+  .hero h1 .grad{
+    background:linear-gradient(135deg,var(--indigo),var(--purple));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .role-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#eef0ff;color:var(--indigo-dark);font-size:13px;font-weight:600;
+    padding:6px 14px;border-radius:99px;margin-bottom:18px;
+  }
+  .hero p.desc{color:var(--slate);font-size:16px;max-width:520px;margin:0 0 24px;}
+  .hero p.desc b{color:var(--ink);font-weight:700;}
+  .hero p.desc .fbdi{color:var(--pink);font-weight:700;}
+  .hero p.desc .otbi{color:var(--orange);font-weight:700;}
+  .stat-row{display:flex;gap:28px;margin-bottom:24px;flex-wrap:wrap;}
+  .stat-row .stat{font-size:13px;color:var(--slate);display:flex;align-items:center;gap:6px;}
+  .stat-row .stat b{color:var(--ink);font-size:14px;}
+  .contact-row{display:flex;gap:14px;margin-bottom:28px;flex-wrap:wrap;font-size:13px;color:var(--slate);}
+  .contact-row span{display:flex;align-items:center;gap:6px;}
+  .hero-actions{display:flex;gap:14px;}
+  .hero-photo{position:relative;justify-self:center;}
+  .hero-photo .frame{
+    width:320px;height:420px;border-radius:22px;overflow:hidden;
+    background:linear-gradient(160deg,#d9d5f8,#e9e6fb);
+    box-shadow:0 30px 60px -20px rgba(91,75,245,.35);
+  }
+  .hero-photo .frame img{width:100%;height:100%;object-fit:cover;}
+  .float-tag{
+    position:absolute;background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:8px 12px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px;
+    box-shadow:0 10px 25px -8px rgba(0,0,0,.15);
+  }
+  .float-tag.top{top:-10px;right:10px;}
+  .float-tag.bottom{bottom:-10px;left:0px;}
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero h1{font-size:38px;}
+    .hero-photo{order:-1;}
+  }
+
+  /* SKILLS */
+  .skills{padding:90px 0;}
+  .skills-layout{display:flex;flex-direction:column;gap:50px;}
+  .skills-top-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+  #skill-bars{display:grid;grid-template-columns:1fr 1fr;column-gap:60px;}
+  .skill-row{margin-bottom:16px;}
+  .skill-row .label{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:6px;color:var(--ink);}
+  .skill-row .label span.pct{color:var(--muted);}
+  .bar-bg{height:7px;border-radius:99px;background:var(--bg-soft);overflow:hidden;}
+  .bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--indigo),var(--purple));}
+  .subhead{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+  .subhead::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--indigo);}
+  .module-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:32px;}
+  .module-card{
+    border:1px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center;
+    font-size:12.5px;font-weight:600;color:var(--ink);
+  }
+  .module-card .ic{
+    width:34px;height:34px;border-radius:9px;margin:0 auto 10px;
+    display:flex;align-items:center;justify-content:center;font-size:16px;
+    background:var(--bg-soft);
+  }
+  .tool-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tool-tags span{
+    border:1px solid var(--line);border-radius:8px;padding:7px 12px;font-size:12.5px;color:var(--slate);
+  }
+  @media (max-width:900px){.skills-grid{grid-template-columns:1fr;} .module-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* EXPERTISE */
+  .expertise{background:var(--bg-soft);padding:90px 0;}
+  .expertise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .exp-card{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;
+  }
+  .exp-card .ic{
+    width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    font-size:18px;margin-bottom:14px;
+  }
+  .exp-card h3{font-size:15.5px;margin:0 0 8px;}
+  .exp-card p{font-size:13.5px;color:var(--slate);margin:0;}
+  @media (max-width:900px){.expertise-grid{grid-template-columns:1fr;}}
+
+  /* PROJECT */
+  .project{padding:90px 0;}
+  .project-card{
+    background:linear-gradient(160deg,#f4f3fd,#fbfaff);
+    border:1px solid var(--line);border-radius:22px;padding:36px;
+  }
+  .project-top{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .project-top .ic{
+    width:44px;height:44px;border-radius:12px;
+    background:linear-gradient(135deg,var(--indigo),var(--purple));
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;
+  }
+  .project-top .eyebrow-small{font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;}
+  .project-top h3{margin:2px 0 0;font-size:20px;}
+  .project-tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 28px;}
+  .project-tags span{background:#fff;border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-size:12px;color:var(--slate);}
+  .project-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px 40px;margin-bottom:24px;}
+  .project-detail{display:flex;gap:14px;}
+  .project-detail .ic{
+    width:36px;height:36px;border-radius:10px;background:#fff;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;
+  }
+  .project-detail h4{margin:0 0 6px;font-size:14.5px;}
+  .project-detail p{margin:0 0 8px;font-size:13px;color:var(--slate);}
+  .mini-tags{display:flex;gap:6px;flex-wrap:wrap;}
+  .mini-tags span{font-size:11px;color:var(--indigo-dark);background:#eef0ff;padding:3px 8px;border-radius:6px;}
+  .project-meta{
+    display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:22px;
+    flex-wrap:wrap;gap:16px;
+  }
+  .project-meta-items{display:flex;gap:36px;flex-wrap:wrap;}
+  .project-meta-items div{font-size:13px;}
+  .project-meta-items small{display:block;color:var(--muted);font-size:11px;margin-bottom:3px;}
+  .project-status{color:var(--green);font-weight:600;font-size:13px;display:flex;align-items:center;gap:6px;}
+  @media (max-width:700px){.project-detail-grid{grid-template-columns:1fr;}}
+
+  /* CERTIFICATIONS */
+  .certifications{background:var(--bg-soft);padding:90px 0;}
+  .cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .cert-card{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .cert-card .ic{
+    width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    font-size:18px;margin-bottom:8px;background:linear-gradient(135deg,var(--indigo),var(--purple));color:#fff;
+  }
+  .cert-card h3{font-size:15.5px;margin:0;}
+  .cert-card .issuer{font-size:13px;color:var(--slate);}
+  .cert-card .btn{
+    margin-top:auto;align-self:flex-start;font-size:12px;padding:8px 14px;
+  }
+  @media (max-width:900px){.cert-grid{grid-template-columns:1fr;}}
+
+  /* EDUCATION */
+  .education{padding:90px 0;}
+  .timeline{position:relative;padding-left:56px;}
+  .timeline::before{content:"";position:absolute;left:19px;top:8px;bottom:8px;width:2px;background:var(--line);}
+  .tl-item{position:relative;margin-bottom:20px;}
+  .tl-dot{
+    position:absolute;left:-56px;top:0;width:40px;height:40px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;
+    transition:all 0.3s ease;
+  }
+  .tl-item:hover .tl-dot{transform:scale(1.2);box-shadow:0 0 0 6px var(--bg-soft);}
+  .tl-card{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 24px;
+    display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;
+    transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);cursor:default;
+  }
+  .tl-card:hover{transform:translateY(-4px);box-shadow:0 15px 30px -10px rgba(91,75,245,0.15);border-color:var(--purple);}
+  .tl-card h3{margin:0 0 4px;font-size:16px;}
+  .tl-card .spec{color:var(--indigo);font-size:13px;margin-bottom:8px;}
+  .tl-card .meta{font-size:12.5px;color:var(--muted);}
+  .score-pill{
+    background:#eef0ff;color:var(--indigo-dark);font-weight:700;font-size:12.5px;
+    padding:6px 12px;border-radius:8px;white-space:nowrap;
+  }
+
+  /* BLOG */
+  .blog{background:var(--bg-soft);padding:90px 0;}
+  .blog-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px;}
+  .blog-head .view-all{font-size:13.5px;font-weight:600;color:var(--indigo);}
+  .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .blog-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .blog-card .thumb{
+    height:150px;background:linear-gradient(135deg,#2b2b45,#3d3d63);position:relative;
+  }
+  .blog-card .thumb .cat{
+    position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:var(--ink);
+    font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:99px;
+  }
+  .blog-card .thumb .read-time{
+    position:absolute;top:12px;right:12px;background:rgba(0,0,0,.4);color:#fff;
+    font-size:10.5px;padding:4px 8px;border-radius:99px;
+  }
+  .blog-card .body{padding:18px 20px 20px;}
+  .blog-card h3{font-size:14.5px;margin:0 0 8px;line-height:1.35;}
+  .blog-card p{font-size:12.5px;color:var(--slate);margin:0 0 14px;}
+  .blog-card .foot{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--muted);}
+  .blog-card .foot .read{color:var(--indigo);font-weight:600;}
+  .view-all-btn-wrap{text-align:center;margin-top:32px;}
+  @media (max-width:900px){.blog-grid{grid-template-columns:1fr;}}
+
+  /* ABOUT/SUMMARY */
+  .about{padding:90px 0;}
+  .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:50px;}
+  .quickstats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;}
+  .quickstats div{
+    border:1px solid var(--line);border-radius:12px;padding:14px 8px;text-align:center;
+  }
+  .quickstats b{display:block;font-size:18px;color:var(--indigo-dark);}
+  .quickstats small{font-size:11px;color:var(--muted);}
+  .quickfacts{border:1px solid var(--line);border-radius:16px;padding:20px;}
+  .quickfacts h4{margin:0 0 14px;font-size:13px;color:var(--ink);}
+  .qf-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:13px;transition:all 0.2s;}
+  .qf-row:hover{transform:translateX(5px);}
+  .qf-row .ic{
+    width:30px;height:30px;border-radius:8px;background:var(--bg-soft);color:var(--indigo);
+    display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;transition:all 0.2s;
+  }
+  .qf-row:hover .ic{background:var(--indigo);color:#fff;}
+  .qf-row small{display:block;color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;}
+  .about-text p{color:var(--slate);font-size:15px;margin:0 0 16px;}
+  .about-text b{color:var(--ink);}
+  .highlights{border-top:1px solid var(--line);padding-top:24px;margin-top:16px;}
+  .highlights h4{font-size:13.5px;margin:0 0 18px;}
+  .hl-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .hl-card{
+    display:flex;align-items:center;gap:12px;background:#f4f3fd;color:var(--indigo-dark);
+    border-radius:12px;padding:12px 14px;font-size:12.5px;font-weight:600;
+    transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);cursor:default;
+  }
+  .hl-card:hover{
+    transform:translateY(-3px);box-shadow:0 10px 20px -8px rgba(91,75,245,0.25);
+    background:linear-gradient(135deg,var(--indigo),var(--purple));color:#fff;
+  }
+  .toolkit{margin-top:40px;}
+  .toolkit h4{font-size:13px;margin:0 0 18px;display:flex;align-items:center;gap:8px;}
+  .toolkit h4::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange);}
+  .toolkit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .tk-card{
+    border:1px solid var(--line);border-radius:14px;padding:20px 12px;
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);cursor:default;background:#fff;
+  }
+  .tk-card .tk-ic{color:var(--indigo);margin-bottom:12px;transition:all 0.3s;}
+  .tk-card strong{font-size:12.5px;color:var(--ink);display:block;}
+  .tk-card small{display:block;font-weight:400;color:var(--slate);font-size:11px;margin-top:6px;}
+  .tk-card:hover{transform:translateY(-5px);border-color:var(--purple);box-shadow:0 15px 30px -10px rgba(91,75,245,0.15);}
+  .tk-card:hover .tk-ic{transform:scale(1.2);color:var(--purple);}
+  @media (max-width:900px){.about-grid{grid-template-columns:1fr;} .toolkit-grid{grid-template-columns:repeat(2,1fr);} .hl-grid{grid-template-columns:1fr;}}
+
+  /* CONTACT */
+  .contact{padding:90px 0;}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .contact-list{display:flex;flex-direction:column;gap:14px;}
+  .contact-item{
+    border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .contact-item .ic{
+    width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;flex-shrink:0;
+  }
+  .contact-item small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em;}
+  .contact-item strong{font-size:14.5px;}
+  .cta-panel{
+    background:linear-gradient(155deg,var(--indigo),var(--purple));
+    border-radius:18px;padding:30px;color:#fff;display:flex;flex-direction:column;
+  }
+  .cta-panel .send-ic{
+    width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.15);
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  }
+  .cta-panel h3{margin:0 0 10px;font-size:20px;}
+  .cta-panel p{font-size:13.5px;opacity:.9;margin:0 0 22px;flex-grow:1;}
+  .cta-actions{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap;}
+  .cta-actions .btn{font-size:13px;padding:10px 16px;}
+  .cta-actions .btn-white{background:#fff;color:var(--indigo-dark);}
+  .cta-actions .btn-ghost{background:rgba(255,255,255,.15);color:#fff;}
+  .cta-foot{display:flex;justify-content:space-between;font-size:11.5px;opacity:.85;flex-wrap:wrap;gap:6px;}
+  @media (max-width:800px){.contact-grid{grid-template-columns:1fr;}}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:26px 0;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+  .footer-brand{display:flex;align-items:center;gap:10px;}
+  .footer-brand small{display:block;color:var(--muted);font-size:11px;}
+  .footer-links{display:flex;align-items:center;gap:14px;font-size:13px;color:var(--slate);}
+  .footer-icons{display:flex;gap:8px;}
+  .footer-icons span{
+    width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--slate);
+  }
+  .footer-right{display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--muted);}
+  .top-btn{
+    width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--indigo),var(--purple));
+    color:#fff;display:flex;align-items:center;justify-content:center;
+  }
+  .copyright{text-align:center;font-size:12px;color:var(--muted);margin-top:18px;}
+
+  [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+  [data-reveal].in{opacity:1;transform:none;}
+
+  @media (max-width:640px){
+    .wrap{padding:0 20px;}
+    h2{font-size:26px;}
+    .skills-top-row, #skill-bars, .module-grid, .toolkit-grid, .hl-grid{grid-template-columns:1fr;}
+  }
+  [data-lucide] { width: 1.2em; height: 1.2em; stroke-width: 2px; vertical-align: middle; }
+</style>
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand" style="gap:12px; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+      <div class="logo" style="box-shadow: 0 4px 10px rgba(91,75,245,0.3);">BR</div>
+      <div class="names"><strong style="font-size:17px; letter-spacing:-0.01em;">Bandi Reddy</strong></div>
+    </div>
+    <div class="navlinks">
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact" class="active">Contact</a>
+    </div>
+    <div class="navright">
+      <a href="tel:+917093943968" class="icon-btn" style="color:var(--green); border-color:var(--green);"><i data-lucide="phone"></i></a>
+      <a href="#contact" class="btn btn-primary"><i data-lucide="zap"></i> Hire Me</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="badge"><i data-lucide="check-circle" style="color:var(--green); width:14px; height:14px;"></i> Open to opportunities</div>
+      <h1>Hi, I'm<br><span class="grad">Bandi Mysura</span><br>Reddy</h1>
+      <div class="role-pill"><i data-lucide="zap" style="width:14px; height:14px;"></i> Oracle Fusion Technical Consultant</div>
+      <p class="desc">Specialized in ERP Cloud implementations with expertise in <b>BI Publisher</b>, <b>FBDI</b> &amp; <b>OIC</b>. Building scalable, business-driven solutions.</p>
+      <div class="stat-row">
+        <div class="stat"><i data-lucide="graduation-cap"></i> <b>2</b> Years</div>
+        <div class="stat"><i data-lucide="star"></i> <b>12+</b> Modules</div>
+        <div class="stat"><i data-lucide="zap"></i> <b>20+</b> Skills</div>
+      </div>
+      <div class="contact-row">
+        <span style="color:var(--green);"><i data-lucide="phone"></i> <span style="color:var(--slate);">+91-7093943968</span></span>
+        <span><i data-lucide="mail"></i> Email</span>
+        <span><i data-lucide="map-pin"></i> Hyderabad</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Get in Touch →</a>
+        <a href="#skills" class="btn btn-outline">View Skills</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="float-tag top"><i data-lucide="zap"></i> Oracle Cloud</div>
+      <div class="frame">
+        <img src="profile%20pics/mysura-suit-pose.jpeg" alt="Bandi Mysura Reddy portrait">
+      </div>
+      <div class="float-tag bottom"><i data-lucide="star"></i> BI Publisher</div>
+    </div>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <div class="wrap">
+    <div class="eyebrow">Expertise</div>
+    <h2>Core <span>Skills</span></h2>
+    <p class="section-desc">Technical proficiency across Oracle Fusion ecosystem, database management, and enterprise reporting tools.</p>
+    <div class="skills-layout">
+      
+      <div class="skills-top-row">
+        <div>
+          <div class="subhead">ERP Modules</div>
+          <div class="module-grid">
+            <div class="module-card"><div class="ic"><i data-lucide="users"></i></div>HCM Core</div>
+            <div class="module-card"><div class="ic"><i data-lucide="shopping-cart"></i></div>Procurement</div>
+            <div class="module-card"><div class="ic"><i data-lucide="landmark"></i></div>Finance</div>
+            <div class="module-card"><div class="ic"><i data-lucide="truck"></i></div>SCM</div>
+          </div>
+        </div>
+        <div>
+          <div class="subhead">Tools &amp; Environment</div>
+          <div class="tool-tags">
+            <span>Postman</span><span>SQL Developer</span><span>BI Publisher Desktop</span>
+            <span>Cloud SQL Desktop</span><span>MS Excel</span><span>MS Word</span><span>Oracle Fusion Application</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="subhead">Technical Skills</div>
+        <div id="skill-bars"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="expertise" id="experience">
+  <div class="wrap">
+    <div class="eyebrow">Experience</div>
+    <h2>Knowledge &amp; <span>Expertise</span></h2>
+    <p class="section-desc">Hands-on experience across the Oracle Fusion ecosystem, from report development to data migration and system optimization.</p>
+    <div class="expertise-grid" id="expertise-grid"></div>
+  </div>
+</section>
+
+<section class="project" id="projects">
+  <div class="wrap">
+    <div class="eyebrow">Projects</div>
+    <h2>Featured <span>Project</span></h2>
+    <p class="section-desc">A deep dive into my Oracle Fusion BI Publisher report development work.</p>
+    <div class="project-card">
+      <div class="project-top">
+        <div class="ic"><i data-lucide="folder"></i></div>
+        <div>
+          <div class="eyebrow-small">Oracle Fusion Cloud</div>
+          <h3>BI Publisher Report Development</h3>
+        </div>
+      </div>
+      <div class="project-tags">
+        <span>Oracle Cloud</span><span>BI Publisher</span><span>SQL</span><span>XML</span><span>RTF</span><span>Procurement</span><span>Payables</span>
+      </div>
+      <div class="project-detail-grid">
+        <div class="project-detail">
+          <div class="ic"><i data-lucide="file-text"></i></div>
+          <div>
+            <h4>Custom BI Publisher Reports</h4>
+            <p>Designed and developed custom BI Publisher reports for Procurement and Payables modules leveraging SQL, XML, and RTF templates.</p>
+            <div class="mini-tags"><span>SQL</span><span>XML</span><span>RTF Templates</span><span>BI Publisher</span></div>
+          </div>
+        </div>
+        <div class="project-detail">
+          <div class="ic"><i data-lucide="database"></i></div>
+          <div>
+            <h4>Optimized Data Models</h4>
+            <p>Built and optimized data models to support reporting requirements and improve performance across modules.</p>
+            <div class="mini-tags"><span>Data Modelling</span><span>Performance</span><span>SQL</span></div>
+          </div>
+        </div>
+        <div class="project-detail">
+          <div class="ic"><i data-lucide="users"></i></div>
+          <div>
+            <h4>Requirements Gathering</h4>
+            <p>Collaborated with functional teams to gather requirements and ensured alignment with business needs.</p>
+            <div class="mini-tags"><span>Collaboration</span><span>Business Analysis</span><span>Impact Analysis</span></div>
+          </div>
+        </div>
+        <div class="project-detail">
+          <div class="ic"><i data-lucide="zap"></i></div>
+          <div>
+            <h4>Bursting Queries</h4>
+            <p>Implemented bursting queries for dynamic report distribution to multiple stakeholders automatically.</p>
+            <div class="mini-tags"><span>Automation</span><span>Distribution</span><span>Dynamic Reports</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="project-meta">
+        <div class="project-meta-items">
+          <div><small>Role</small><b>Technical Consultant</b></div>
+          <div><small>Platform</small><b>Oracle Fusion Cloud</b></div>
+          <div><small>Modules</small><b>Finance, HCM &amp; SCM</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="education" id="education">
+  <div class="wrap">
+    <div class="eyebrow">Education</div>
+    <h2>Academic <span>Background</span></h2>
+    <p class="section-desc">Strong academic foundation in Computer Science with specialization in Business Systems.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#3b82f6;"><i data-lucide="graduation-cap"></i></div>
+        <div class="tl-card">
+          <div>
+            <h3>B.Tech. Computer Science &amp; Engineering</h3>
+            <div class="spec">Specialization in Business Systems</div>
+            <div class="meta">🏫 Arjun College of Technology<br>Affiliated to Anna University, Coimbatore<br>📅 2021 – 2025 &nbsp; ↗ CGPA: 7.95</div>
+          </div>
+          <div class="score-pill">CGPA: 7.95</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e;"><i data-lucide="book"></i></div>
+        <div class="tl-card">
+          <div>
+            <h3>Intermediate (12th)</h3>
+            <div class="meta">🏫 Narayana Junior College<br>📅 2019 – 2021 &nbsp; ↗ 86%</div>
+          </div>
+          <div class="score-pill">86%</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#f59e0b;"><i data-lucide="award"></i></div>
+        <div class="tl-card">
+          <div>
+            <h3>SSC (10th)</h3>
+            <div class="meta">🏫 Z.P High School<br>📅 2018 – 2019 &nbsp; ↗ GPA: 9.2</div>
+          </div>
+          <div class="score-pill">GPA: 9.2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="certifications" id="certifications">
+  <div class="wrap">
+    <div class="eyebrow">Certifications</div>
+    <h2>Professional <span>Certifications</span></h2>
+    <p class="section-desc">Industry-recognized credentials validating my expertise.</p>
+    <div class="cert-grid">
+      <div class="cert-card" data-reveal>
+        <div class="ic"><i data-lucide="trophy"></i></div>
+        <h3>Master Oracle SQL: From Basics to Advanced Techniques</h3>
+        <div class="issuer">Udemy</div>
+        <a href="https://www.udemy.com/certificate/UC-b160831b-5684-49cc-8a92-7334cc876197/" target="_blank" class="btn btn-outline">View Credential</a>
+      </div>
+      <div class="cert-card" data-reveal>
+        <div class="ic"><i data-lucide="trophy"></i></div>
+        <h3>The Complete PL/SQL Bootcamp</h3>
+        <div class="issuer">Udemy</div>
+        <a href="https://www.udemy.com/certificate/UC-0394f567-d048-474e-b5e6-977e259927a3/" target="_blank" class="btn btn-outline">View Credential</a>
+      </div>
+      <div class="cert-card" data-reveal>
+        <div class="ic"><i data-lucide="trophy"></i></div>
+        <h3>Oracle Fusion Technical - Complete Guide</h3>
+        <div class="issuer">Udemy</div>
+        <a href="https://www.udemy.com/certificate/UC-1d5262d5-6053-435e-b9c7-c24cac1fe124/" target="_blank" class="btn btn-outline">View Credential</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap">
+    <div class="eyebrow">About Me</div>
+    <h2>Professional <span>Summary</span></h2>
+    <div class="about-grid">
+      <div>
+        <div class="quickstats">
+          <div><b>2</b><small>Years Exp.</small></div>
+          <div><b>12+</b><small>ERP Modules</small></div>
+          <div><b>20+</b><small>Tech Skills</small></div>
+        </div>
+        <div class="quickfacts">
+          <h4>Quick Facts</h4>
+          <div class="qf-row"><div class="ic"><i data-lucide="briefcase"></i></div><div><small>Role</small>Oracle Fusion Technical Consultant</div></div>
+          <div class="qf-row"><div class="ic"><i data-lucide="map-pin"></i></div><div><small>Location</small>Hyderabad, India</div></div>
+          <div class="qf-row"><div class="ic"><i data-lucide="graduation-cap"></i></div><div><small>Degree</small>B.Tech CSE (2025)</div></div>
+          <div class="qf-row"><div class="ic"><i data-lucide="heart"></i></div><div><small>Passion</small>Enterprise Solutions</div></div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>Oracle Fusion Technical Consultant with <b>2 years</b> of experience in ERP Cloud implementations, customizations, and support.</p>
+        <p>Hands-on expertise in BI Publisher, FBDI, and OIC. Skilled in SQL, PL/SQL, and XML for developing data models and reports. Proficient across Procurement, Payables, Receivables, GL, and FSCM modules.</p>
+        <p>Strong collaborator with proven ability to deliver scalable, business-driven solutions while working closely with functional teams to gather requirements and perform impact analysis.</p>
+        <div class="highlights">
+          <h4>Key Highlights</h4>
+          <div class="hl-grid">
+            <div class="hl-card"><i data-lucide="file-text"></i> Custom BI Publisher reports</div>
+            <div class="hl-card"><i data-lucide="database"></i> FBDI data migration</div>
+            <div class="hl-card"><i data-lucide="pie-chart"></i> OTBI dashboard analytics</div>
+            <div class="hl-card"><i data-lucide="zap"></i> PL/SQL query optimization</div>
+            <div class="hl-card"><i data-lucide="tool"></i> Cross-module troubleshooting</div>
+            <div class="hl-card"><i data-lucide="link"></i> HCM data API integration</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="toolkit">
+      <h4>Technical Toolkit</h4>
+      <div class="toolkit-grid" id="toolkit-grid"></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h2>Let's <span>Connect</span></h2>
+    <p class="section-desc">I'm always open to discussing new opportunities, Oracle Fusion projects, or just having a tech conversation.</p>
+    <div class="contact-grid">
+      <div class="contact-list">
+        <div class="contact-item">
+          <div class="ic" style="background:#22c55e;"><i data-lucide="phone"></i></div>
+          <div><small>Phone</small><strong>+91-7093943968</strong></div>
+        </div>
+        <div class="contact-item">
+          <div class="ic" style="background:#f59e0b;"><i data-lucide="mail"></i></div>
+          <div><small>Email</small><strong>hello@mysurareddy.com</strong></div>
+        </div>
+        <div class="contact-item">
+          <div class="ic" style="background:#22c55e;"><i data-lucide="map-pin"></i></div>
+          <div><small>Location</small><strong>Hyderabad, India</strong></div>
+        </div>
+        <div class="contact-item">
+          <div class="ic" style="background:#7c3aed;"><i data-lucide="message-circle"></i></div>
+          <div><small>Availability</small><strong>Open to opportunities</strong><div style="font-size:11.5px;color:var(--muted);">Typically responds within 24 hours</div></div>
+        </div>
+      </div>
+      <div class="cta-panel">
+        <div class="send-ic"><i data-lucide="send"></i></div>
+        <h3>Ready to Work Together?</h3>
+        <p>Whether you need Oracle Fusion consulting, BI Publisher reports, or ERP implementation support — I'm here to help deliver scalable solutions for your business.</p>
+        <div class="cta-actions">
+          <a href="mailto:hello@mysurareddy.com" class="btn btn-white"><i data-lucide="mail"></i> Send Email</a>
+          <a href="tel:+917093943968" class="btn btn-ghost"><i data-lucide="phone"></i> Call Now</a>
+        </div>
+        <div class="cta-foot"><span><i data-lucide="heart"></i> Passionate about Oracle</span><span><i data-lucide="clock"></i> 24h response time</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <div class="footer-brand" style="display:flex; align-items:center; gap:12px;">
+        <div class="logo" style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--indigo),var(--purple));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;box-shadow:0 4px 10px rgba(91,75,245,0.3);">BR</div>
+        <div><strong style="font-size:15px; letter-spacing:-0.01em;">Bandi Reddy</strong></div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-icons">
+          <span><i data-lucide="mail"></i></span><span><i data-lucide="image"></i></span><span><i data-lucide="message-circle"></i></span>
+        </div>
+      </div>
+      <div class="footer-right">
+        Built with ❤ &amp; React
+        <div class="top-btn"><a href="#" style="color:#fff;">↑</a></div>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Bandi Mysura Reddy. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const skills = [
+    ["Oracle Fusion Technical",75],["BI Publisher",90],["OTBI",88],["FBDI",88],
+    ["SQL",85],["OIC",55],["PL/SQL",75],["Data Modelling",78],["XML",88],
+    ["ESS Jobs",75],["RTF/Excel Templates",80],["Data Migration",80],["Database Modelling",65],
+    ["REST & SOAP APIs",75]
+  ];
+  const skillIcons = ["bar-chart","file-text","trending-up","save","laptop","link","database","folder","newspaper","settings","clipboard","shuffle","puzzle","globe"];
+  const bars = document.getElementById('skill-bars');
+  skills.forEach(([name,pct],i)=>{
+    const row = document.createElement('div');
+    row.className='skill-row';
+    row.innerHTML = `<div class="label"><span style="display:flex;align-items:center;gap:6px;"><i data-lucide="${skillIcons[i]||'square'}"></i> ${name}</span><span class="pct">${pct}%</span></div>
+      <div class="bar-bg"><div class="bar-fill" data-w="${pct}" style="width:0%"></div></div>`;
+    bars.appendChild(row);
+  });
+
+  const expertiseData = [
+    ["file-text","BI Publisher Reports & OTBI Dashboards","Developed and customized BI Publisher reports, OTBI dashboards, and ESS Jobs for business-critical reporting.","#eef0ff","#4338ca"],
+    ["database","Data Migration with FBDI","Performed data migration activities using FBDI templates for Suppliers, Invoices, and other business entities.","#e6faf0","#16a34a"],
+    ["wrench","Technical Issue Resolution","Troubleshot and resolved technical issues across Procurement, Payables, Receivables, GL, and FCM modules.","#fff1e6","#ea580c"],
+    ["link","OIC Integration & Development","Designed and implemented robust integrations using Oracle Integration Cloud (OIC) to seamlessly connect enterprise applications and automate business processes.","#fdeaf5","#db2777"],
+    ["laptop","SQL & PL/SQL Optimization","Optimized PL/SQL scripts and SQL queries to improve system performance and ensure data accuracy.","#eaf3ff","#2563eb"],
+    ["bar-chart","Finance, HCM & SCM Reports","Designed and developed comprehensive reports across Finance, HCM, and SCM modules to provide actionable insights and support critical business processes.","#f2eafd","#7c3aed"]
+  ];
+  const expGrid = document.getElementById('expertise-grid');
+  expertiseData.forEach(([ic,title,desc,bg,fg])=>{
+    const card = document.createElement('div');
+    card.className='exp-card';
+    card.setAttribute('data-reveal','');
+    card.innerHTML = `<div class="ic" style="background:${bg};color:${fg};"><i data-lucide="${ic}"></i></div><h3>${title}</h3><p>${desc}</p>`;
+    expGrid.appendChild(card);
+  });
+
+  const toolkitData = [
+    ["file-text","BI Publisher","Custom reports & RTF templates"],
+    ["database","FBDI","Data migration & loading"],
+    ["pie-chart","OTBI","Dashboards & analytics"],
+    ["clock","ESS Jobs","Scheduled processes"],
+    ["users","HCM Core","Employee data management"],
+    ["box","FSCM","Procurement to GL modules"],
+    ["code","SQL / PL/SQL","Query optimization"],
+    ["file-code","XML","Data model development"],
+    ["arrow-right-left","Data Migration","Staging & EBS loading"],
+    ["layout-template","RTF Templates","Report formatting"],
+    ["globe","API Integration","HCM data push"],
+    ["cloud","Cloud SQL","Cloud database access"]
+  ];
+  const tkGrid = document.getElementById('toolkit-grid');
+  toolkitData.forEach(([ic,name,sub])=>{
+    const d = document.createElement('div');
+    d.className = 'tk-card';
+    d.innerHTML = `<div class="tk-ic"><i data-lucide="${ic}"></i></div><strong>${name}</strong><small>${sub}</small>`;
+    tkGrid.appendChild(d);
+  });
+
+  // reveal + bar animation on scroll
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        e.target.querySelectorAll('.bar-fill').forEach(b=>{ b.style.width = b.dataset.w + '%'; });
+        if(e.target.id==='skill-bars' || e.target.closest('.skills')){
+          document.querySelectorAll('.bar-fill').forEach(b=>{ b.style.width = b.dataset.w + '%'; });
+        }
+      }
+    });
+  },{threshold:0.15});
+  document.querySelectorAll('[data-reveal], .skills').forEach(el=>observer.observe(el));
+  // ensure bars animate once skills section is visible even without data-reveal wrapper
+  setTimeout(()=>{document.querySelectorAll('.bar-fill').forEach(b=>{ if(isInViewport(b)) b.style.width = b.dataset.w+'%'; });},300);
+  function isInViewport(el){
+    const r = el.getBoundingClientRect();
+    return r.top < window.innerHeight && r.bottom > 0;
+  }
+</script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
