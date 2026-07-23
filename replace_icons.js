@@ -32,7 +32,7 @@ const replacements = [
     [ `<div class="module-card"><div class="ic">🧾</div>Receivables</div>`, `<div class="module-card"><div class="ic"><i data-lucide="receipt"></i></div>Receivables</div>` ],
     [ `<div class="module-card"><div class="ic">📖</div>General Ledger</div>`, `<div class="module-card"><div class="ic"><i data-lucide="book-open"></i></div>General Ledger</div>` ],
     [ `<div class="module-card"><div class="ic">🚚</div>Supplier Mgmt</div>`, `<div class="module-card"><div class="ic"><i data-lucide="truck"></i></div>Supplier Mgmt</div>` ],
-    [ `<div class="module-card"><div class="ic">👥</div>HCM Core</div>`, `<div class="module-card"><div class="ic"><i data-lucide="users"></i></div>HCM Core</div>` ],
+    [ `<div class="module-card"><div class="ic">👥</div>HCM</div>`, `<div class="module-card"><div class="ic"><i data-lucide="users"></i></div>HCM</div>` ],
     // Projects
     [ `<div class="ic">🗂️</div>`, `<div class="ic"><i data-lucide="folder"></i></div>` ],
     [ `<div class="ic">📄</div>`, `<div class="ic"><i data-lucide="file-text"></i></div>` ],
