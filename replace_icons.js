@@ -19,7 +19,7 @@ const replacements = [
     [ `<div class="badge"><span class="dot"></span> Open to opportunities</div>`, `<div class="badge"><i data-lucide="check-circle" style="color:var(--green); width:14px; height:14px;"></i> Open to opportunities</div>` ],
     [ `⚡ Oracle Fusion Technical Consultant`, `<i data-lucide="zap" style="width:14px; height:14px;"></i> Oracle Fusion Technical Consultant` ],
     [ `<div class="stat">🎓 <b>2</b> Years</div>`, `<div class="stat"><i data-lucide="graduation-cap"></i> <b>2</b> Years</div>` ],
-    [ `<div class="stat">⭐ <b>12+</b> Modules</div>`, `<div class="stat"><i data-lucide="star"></i> <b>12+</b> Modules</div>` ],
+    [ `<div class="stat">⭐ <b>3+</b> modules</div>`, `<div class="stat"><i data-lucide="star"></i> <b>3+</b> modules</div>` ],
     [ `<div class="stat">⚡ <b>20+</b> Skills</div>`, `<div class="stat"><i data-lucide="zap"></i> <b>20+</b> Skills</div>` ],
     [ `<span style="color:var(--green);">📞`, `<span style="color:var(--green);"><i data-lucide="phone"></i>` ],
     [ `<span>✉️ Email</span>`, `<span><i data-lucide="mail"></i> Email</span>` ],
